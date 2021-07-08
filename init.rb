@@ -40,10 +40,15 @@ Redmine::Plugin.register :redmine_hide_issue_description do
   end  
  
   Redmine::MenuManager.map :application_menu do |menu|
-    menu.push :activity, { :controller => 'activities', :action => 'index' }, after: :projects, :if => Proc.new { User.current.admin? || User.current.allowed_to?(:view_activities_global, User.current.projects.to_a) }
+    menu.push :activity, { :controller => 'activities', :action => 'index' }, after: :projects, :if => Proc.new { User.current.admin? || User.current.allowed_to?(:view_activities_global, nil, :global => true) }
   end
- 
+
   Redmine::MenuManager.map :project_menu do |menu|
-    menu.push :activity, { :controller => 'activities', :action => 'index' }, after: :overview, :if => Proc.new { User.current.admin? || User.current.allowed_to?(:view_activities, User.current.projects.to_a) }
+    #menu.push :activity, { :controller => 'activities', :action => 'index' }, after: :overview, param: :project_id, :if => Proc.new { User.current.admin? || User.current.allowed_to?(:view_activities, Project.find(params[:project_id])) }
   end
+
+  Redmine::MenuManager.map :project_menu do |menu|
+    menu.push :activity, { :controller => 'activities', :action => 'index' }, after: :overview, param: :project_id, :if => Proc.new {  |p| User.current.allowed_to?(:view_activities, p)  }
+  end
+
 end

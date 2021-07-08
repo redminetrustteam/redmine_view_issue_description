@@ -8,7 +8,6 @@ This plugin adds two new permissions that hides and disables the "activities" me
 == TODO
 
 1. Hide issues on a « per tracker » basis: add permissions + make it work.
-2. The application "activity" menu does not appear when it should in project menu. (lack of @Project)
 
 == Installation
 
