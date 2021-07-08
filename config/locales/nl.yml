@@ -1,0 +1,6 @@
+# Dutch strings go here for Rails i18n
+nl:
+  permission_hide_view_issue_description: "Issue beschrijving verbergen"
+  permission_view_activities_global: "Globale activiteiten weergeven"
+  permission_view_activities: "Activiteiten weergeven"
+  
