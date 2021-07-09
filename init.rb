@@ -1,31 +1,31 @@
 require 'redmine'
 
-require_dependency 'hide_issue_description_issue_patch'
-require_dependency 'hide_issue_description_query_patch'
+require_dependency 'view_issue_description_issue_patch'
+require_dependency 'view_issue_description_query_patch'
 require_dependency 'activities_controller_override'
 
 Rails.configuration.to_prepare do
-  unless Issue.included_modules.include?(HideIssueDescriptionIssuePatch)
-    Issue.send(:prepend, HideIssueDescriptionIssuePatch::InstanceMethods)
+  unless Issue.included_modules.include?(ViewIssueDescriptionIssuePatch)
+    Issue.send(:prepend, ViewIssueDescriptionIssuePatch::InstanceMethods)
   end
-  unless Query.included_modules.include?(HideIssueDescriptionQueryPatch)
-    Query.send(:prepend, HideIssueDescriptionQueryPatch::InstanceMethods)
+  unless Query.included_modules.include?(ViewIssueDescriptionQueryPatch)
+    Query.send(:prepend, ViewIssueDescriptionQueryPatch::InstanceMethods)
   end
   unless ActivitiesController.included_modules.include?(ActivitiesControllerOverride)
     ActivitiesController.send(:prepend, ActivitiesControllerOverride::InstanceMethods)
   end
 end
 
-Redmine::Plugin.register :redmine_hide_issue_description do
-  name 'Redmine Hide Issue Description plugin'
+Redmine::Plugin.register :redmine_view_issue_description do
+  name 'Redmine View Issue Description plugin'
   author 'Jan Catrysse'
-  description 'Redmine plugin to disable viewing of issue description and the activity tab'
+  description 'Redmine plugin to add permissions to view issue description and the activity tab'
   version '0.0.1'
   url 'https://github.com/jcatrysse/redmine_hide_issue_description'
   author_url 'https://github.com/jcatrysse'
 
   project_module :issue_tracking do
-    permission :hide_view_issue_description, {}
+    permission :view_issue_description, {:custom_issue_description => [:index]}
   end
   
   permission :view_activities_global, {:custom_activities_global => [:index]}

@@ -1,9 +1,9 @@
-= Redmine plugin: Hide Issue Description (and activities)
+= Redmine plugin: View Issue Description (and activities) permission
 
-This plugin adds a new permission that hides viewing of issues (other than listing basic info).
-Users with this Permission can see a list of the Issues, but can not display the individual Issue.
+This plugin adds a new permission for viewing details of issues (other than listing basic info).
+Users without this permission can see a list of the Issues, but can not display the individual Issue, except own issues.
 
-This plugin adds two new permissions that hides and disables the "activities" menu, per project and global.
+This plugin also adds two new permissions that hide and disable the "activities" menu, per project and global.
 
 == TODO
 
@@ -11,17 +11,17 @@ This plugin adds two new permissions that hides and disables the "activities" me
 
 == Installation
 
-1. Move the files into $REDMINE/plugins/redmine_hide_issue_description
+1. Move the files into $REDMINE/plugins/redmine_view_issue_description
 2. Restart REDMINE
 
 == Usage
 
-Set the permission of hide_view_issue_description, view_activities_global, view_activities
+Set the permission of view_issue_description, view_activities_global, view_activities
 1. Click Top Menu [Administration]
 2. Click [Roles and permissions]
 3. Select a Role to hide view of issue description and activity tab
-4. Click check box of hide_view_issue_description that is in the [Issue tracking]
-5. Click check box of hide_view_issue_description and view_activities that is in [Project]
+4. Click check box of view_issue_description that is in the [Issue tracking]
+5. Click check box of view_issue_description and view_activities that is in [Project]
 
 == Compatible
 
