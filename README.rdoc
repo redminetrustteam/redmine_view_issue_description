@@ -22,3 +22,7 @@ Set the permission of hide_view_issue_description, view_activities_global, view_
 3. Select a Role to hide view of issue description and activity tab
 4. Click check box of hide_view_issue_description that is in the [Issue tracking]
 5. Click check box of hide_view_issue_description and view_activities that is in [Project]
+
+== Compatible
+
+1. Tested on Redmine 4.1.2
