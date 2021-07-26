@@ -21,7 +21,7 @@ Redmine::Plugin.register :redmine_view_issue_description do
   author 'Jan Catrysse'
   description 'Redmine plugin to add permissions to view issue description and the activity tab'
   version '0.0.1'
-  url 'https://github.com/jcatrysse/redmine_hide_issue_description'
+  url 'https://github.com/jcatrysse/redmine_view_issue_description'
   author_url 'https://github.com/jcatrysse'
 
   project_module :issue_tracking do
