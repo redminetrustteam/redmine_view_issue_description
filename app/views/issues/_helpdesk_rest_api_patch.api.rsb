@@ -1,0 +1,51 @@
+root_api.helpdesk_ticket do
+  root_api.id @issue.helpdesk_ticket.issue.id
+  root_api.from_address @issue.helpdesk_ticket.from_address
+  root_api.to_address @issue.helpdesk_ticket.to_address || ''
+  root_api.cc_address @issue.helpdesk_ticket.cc_address
+  root_api.message_id @issue.helpdesk_ticket.message_id
+  root_api.ticket_date format_date(@issue.helpdesk_ticket.ticket_date)
+  root_api.content @issue.helpdesk_ticket.issue.description
+  root_api.source @issue.helpdesk_ticket.ticket_source_name
+  root_api.is_incoming @issue.helpdesk_ticket.is_incoming
+  root_api.reaction_time @issue.helpdesk_ticket.reaction_time || ''
+  root_api.first_response_time @issue.helpdesk_ticket.first_response_time || ''
+  root_api.resolve_time @issue.helpdesk_ticket.resolve_time || ''
+  root_api.last_agent_response_at format_date(@issue.helpdesk_ticket.last_agent_response_at) || ''
+  root_api.last_customer_response_at format_date(@issue.helpdesk_ticket.last_customer_response_at) || ''
+  root_api.contact(id: @issue.helpdesk_ticket.contact_id, name: @issue.helpdesk_ticket.customer.name) if @issue.helpdesk_ticket.customer.present?
+  root_api.vote @issue.helpdesk_ticket.vote
+  root_api.vote_comment @issue.helpdesk_ticket.vote_comment
+  root_api.message_file do
+    render_api_attachment(@issue.helpdesk_ticket.message_file,api)
+  end if @issue.helpdesk_ticket.message_file.present?
+  root_api.array :journal_messages do
+    @issue.helpdesk_ticket.issue.journal_messages.each do |journal_message|
+      root_api.journal_message do
+        root_api.contact(id: journal_message.contact_id, name: journal_message.contact.name) if journal_message.contact.present?
+        root_api.from_address journal_message.from_address
+        root_api.to_address journal_message.to_address
+        root_api.cc_address journal_message.cc_address
+        root_api.bcc_address journal_message.bcc_address
+        root_api.message_date format_date(journal_message.message_date)
+        root_api.is_incoming journal_message.is_incoming
+        root_api.content journal_message.content
+        root_api.message_id journal_message.message_id
+        root_api.journal_id journal_message.journal_id
+        root_api.viewed_on journal_message.viewed_on
+        root_api.message_file do
+          render_api_attachment(journal_message.message_file,api)
+        end if journal_message.message_file.present?
+      end
+    end
+  end if include_in_api_response?('journal_messages')
+  root_api.array :journals do
+    @issue.helpdesk_ticket.journals.each do |journal|
+      root_api.journal do
+        root_api.id journal.id
+        root_api.notes journal.notes
+        root_api.created_on journal.created_on
+      end
+    end
+  end if include_in_api_response?('journals')
+end if @issue.respond_to?(:helpdesk_ticket) && @issue.helpdesk_ticket
