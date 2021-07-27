@@ -3,7 +3,7 @@ require 'redmine'
 require_dependency 'view_issue_description_issue_patch'
 require_dependency 'view_issue_description_query_patch'
 require_dependency 'activities_controller_override'
-if Redmine::Plugin.installed?(':redmine_contacts_helpdesk')
+if Redmine::Plugin.installed?('redmine_contacts_helpdesk')
   require_dependency 'helpdesk_api_hook'
 end
 
