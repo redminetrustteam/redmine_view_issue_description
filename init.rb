@@ -30,18 +30,18 @@ Redmine::Plugin.register :redmine_view_issue_description do
   project_module :issue_tracking do
     permission :view_issue_description, {:custom_issue_description => [:index]}
   end
-  
+
   permission :view_activities_global, {:custom_activities_global => [:index]}
   permission :view_activities, {:custom_activities => [:index]}
 
   Redmine::MenuManager.map :application_menu do |menu|
     menu.delete :activity
-  end  
- 
+  end
+
   Redmine::MenuManager.map :project_menu do |menu|
     menu.delete :activity
-  end  
- 
+  end
+
   Redmine::MenuManager.map :application_menu do |menu|
     menu.push :activity, { :controller => 'activities', :action => 'index' }, after: :projects, :if => Proc.new { User.current.admin? || User.current.allowed_to?(:view_activities_global, nil, :global => true) }
   end
