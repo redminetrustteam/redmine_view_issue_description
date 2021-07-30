@@ -9,6 +9,8 @@ This plugin also adds two new permissions that hide and disable the "activities"
 
 This plugin activates an API call on "issues" for the Redmineup helpdesk plugin, only when installed.
 
+This plugin activates a "not equal to" filter on "start_date" and "end_date"
+
 == TODO
 
 1. Bugfixing and code checkup by a pro.

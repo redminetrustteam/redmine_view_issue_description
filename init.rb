@@ -1,4 +1,4 @@
-require 'redmine'
+#require 'redmine'
 
 require_dependency 'view_issue_description_issue_patch'
 require_dependency 'view_issue_description_query_patch'
@@ -14,6 +14,7 @@ Rails.configuration.to_prepare do
   end
   unless Query.included_modules.include?(ViewIssueDescriptionQueryPatch)
     Query.send(:prepend, ViewIssueDescriptionQueryPatch::InstanceMethods)
+    Query.send(:include, ViewIssueDescriptionQueryPatch::QueryInclude)
   end
   unless ActivitiesController.included_modules.include?(ActivitiesControllerOverride)
     ActivitiesController.send(:prepend, ActivitiesControllerOverride::InstanceMethods)
