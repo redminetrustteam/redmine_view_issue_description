@@ -3,6 +3,7 @@ require 'redmine'
 require_dependency 'view_issue_description_issue_patch'
 require_dependency 'view_issue_description_query_patch'
 require_dependency 'activities_controller_override'
+require_dependency 'tracker_helper'
 if Redmine::Plugin.installed?('redmine_contacts_helpdesk')
   require_dependency 'helpdesk_api_hook'
 end
@@ -26,6 +27,12 @@ Redmine::Plugin.register :redmine_view_issue_description do
   version '0.0.1'
   url 'https://github.com/jcatrysse/redmine_view_issue_description'
   author_url 'https://github.com/jcatrysse'
+
+  project_module :issue_description do
+    Tracker.all.each do |t|
+      RedmineTrackControl::TrackerHelper.add_tracker_permission(t,"view_issue_description")
+    end
+  end
 
   project_module :issue_tracking do
     permission :view_issue_description, {:custom_issue_description => [:index]}

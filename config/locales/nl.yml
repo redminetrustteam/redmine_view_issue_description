@@ -3,4 +3,5 @@ nl:
   permission_view_issue_description: "Issue beschrijving weergeven"
   permission_view_activities_global: "Globale activiteiten weergeven"
   permission_view_activities: "Activiteiten weergeven"
-  
+  project_module_issue_description: "Issue beschrijving"
+

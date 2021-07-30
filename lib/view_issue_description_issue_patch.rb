@@ -7,6 +7,10 @@ module ViewIssueDescriptionIssuePatch
 
       unless (usr || User.current).admin? || self.author == (usr || User.current) || (usr || User.current).is_or_belongs_to?(assigned_to) || !visible
         visible = (usr || User.current).allowed_to?(:view_issue_description, self.project)
+        unless visible
+          tracker_permission_flag = "view_issue_description_#{self.tracker.name.downcase.gsub(/[^a-z0-9]+/, '_')}".to_sym
+          visible = (usr || User.current).allowed_to?(tracker_permission_flag, self.project)
+        end
       end
       visible
 
