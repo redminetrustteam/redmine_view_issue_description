@@ -7,12 +7,12 @@ An additional set of permissions have been added to re-activate individual "trac
 
 This plugin also adds two new permissions that hide and disable the "activities" menu, per project and global.
 
-This plugin activates an API call on "issues" for the Redmineup helpdesk plugin, only when installed.
+It activates an API call on "issues" for the Redmineup helpdesk plugin, only when installed.
 
-This plugin activates a "not equal to" filter on "start_date" and "end_date"
+And it adds a "not equal to" filter on "start_date" and "end_date"
 
-This plugin is currently in alpha-stage and has been written as a first Ruby poject. All comments, suggestions, corrections and help is very welcome.
-The plugin will be published on the https://www.redmine.org/plugins page, but please be aware of the alpha-stage.
+This plugin is currently in alpha-stage and has been written as a first Ruby project. All comments, suggestions, corrections and help is very welcome.
+The plugin has been published on the https://www.redmine.org/plugins page, but please be aware of the alpha-stage.
 
 == TODO
 
