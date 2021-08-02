@@ -11,6 +11,9 @@ This plugin activates an API call on "issues" for the Redmineup helpdesk plugin,
 
 This plugin activates a "not equal to" filter on "start_date" and "end_date"
 
+This plugin is currently in alpha-stage and has been written as a first Ruby poject. All comments, suggestions, corrections and help is very welcome.
+The plugin will be published on the https://www.redmine.org/plugins page, but please be aware of the alpha-stage.
+
 == TODO
 
 1. Bugfixing and code checkup by a pro.
