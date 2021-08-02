@@ -12,7 +12,7 @@ It activates an API call on "issues" for the Redmineup helpdesk plugin, only whe
 And it adds a "not equal to" filter on "start_date" and "end_date"
 
 This plugin is currently in alpha-stage and has been written as a first Ruby project. All comments, suggestions, corrections and help is very welcome.
-The plugin will be published on the https://www.redmine.org/plugins page, but please be aware of the alpha-stage.
+The plugin has been published on the https://www.redmine.org/plugins page, but please be aware of the alpha-stage.
 
 == TODO
 
