@@ -4,9 +4,7 @@ require_dependency 'view_issue_description_issue_patch'
 require_dependency 'view_issue_description_query_patch'
 require_dependency 'activities_controller_override'
 require_dependency 'tracker_helper'
-if Redmine::Plugin.installed?('redmine_contacts_helpdesk')
-  require_dependency 'helpdesk_api_hook'
-end
+require_dependency 'issues_api_hook'
 
 Rails.configuration.to_prepare do
   unless Issue.included_modules.include?(ViewIssueDescriptionIssuePatch)

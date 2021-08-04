@@ -1,0 +1,7 @@
+root_api.array :changesets do
+  @changesets.each do |changeset|
+    root_api.changeset :revision => changeset.revision do
+      root_api.repository changeset.repository
+    end
+  end
+end if include_in_api_response?('changesets')

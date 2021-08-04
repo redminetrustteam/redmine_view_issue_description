@@ -7,7 +7,8 @@ An additional set of permissions have been added to re-activate individual "trac
 
 This plugin also adds two new permissions that hide and disable the "activities" menu, per project and global.
 
-It activates an API call on "issues" for the Redmineup helpdesk plugin, only when installed.
+It activates an API call on "issues" for the RedmineUP helpdesk plugin, only when installed.
+It activates an API call on "issues" to show the "changesets" "repository" information.
 
 And it adds a "not equal to" filter on "start_date" and "end_date"
 
@@ -21,8 +22,9 @@ The plugin has been published on the https://www.redmine.org/plugins/redmine_vie
 == Installation
 
 1. Move the files into $REDMINE/plugins/redmine_view_issue_description
-2. Only when using the Redmineup helpdesk plugin: Hack and add this line before the last "end" and without quotes to "app/views/issues/show.api.rsb": "call_hook(:view_issues_show_api, {:root_api => api, :issue => @issue})"
-3. Restart REDMINE
+2. Only when using the RedmineUP helpdesk plugin: Hack and add this line before the last "end" and without quotes to "app/views/issues/show.api.rsb": "call_hook(:view_issues_show_api_helpdesk, {:root_api => api, :issue => @issue})"
+3. Only when using the Changesets API feature: Hack and add this line before the last "end" and without quotes to "app/views/issues/show.api.rsb": "call_hook(:view_issues_show_api_changesets, {:root_api => api, :issue => @issue})"
+4. Restart REDMINE
 
 == Usage
 
@@ -45,6 +47,9 @@ Re-activate the view_issue_description permission per tracker
 Usage of the Redmineup helpdesk plugin API hack
 1. API: https://site.url/issues/<issue_id_here>.json
 2. API: https://site.url/issues/<issue_id_here>.json?include=journal_messages,journals
+
+Usage of the "changesets" API hack
+1. API: https://site.url/issues/<issue_id_here>.json?include=changesets
 
 == Compatible
 
