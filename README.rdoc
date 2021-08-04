@@ -45,8 +45,8 @@ Re-activate the view_issue_description permission per tracker
 6. Click check box of issue_description module in [Modules]
 
 Usage of the Redmineup helpdesk plugin API hack
-1. API: https://site.url/issues/<issue_id_here>.json
-2. API: https://site.url/issues/<issue_id_here>.json?include=journal_messages,journals
+1. API: https://site.url/issues/issue_id_here.json
+2. API: https://site.url/issues/issue_id_here.json?include=journal_messages,journals
 
 Usage of the "changesets" API hack
 1. API: https://site.url/issues/<issue_id_here>.json?include=changesets
