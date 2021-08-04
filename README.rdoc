@@ -49,7 +49,7 @@ Usage of the Redmineup helpdesk plugin API hack
 2. API: https://site.url/issues/issue_id_here.json?include=journal_messages,journals
 
 Usage of the "changesets" API hack
-1. API: https://site.url/issues/<issue_id_here>.json?include=changesets
+1. API: https://site.url/issues/<issue_id_here>.json?include=changesets_new
 
 == Compatible
 
