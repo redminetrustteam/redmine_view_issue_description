@@ -1,4 +1,4 @@
-root_api.array :changesets do
+root_api.array :changesets_new do
   @changesets.each do |changeset|
     root_api.changeset :revision => changeset.revision do
       root_api.user(:id => changeset.user_id, :name => changeset.user.name) unless changeset.user.nil?
