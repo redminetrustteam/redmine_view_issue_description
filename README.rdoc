@@ -10,7 +10,7 @@ This plugin also adds two new permissions that hide and disable the "activities"
 It activates an API call on "issues" for the RedmineUP helpdesk plugin, only when installed.
 It activates an API call on "issues" to show the "changesets" "repository" information.
 
-And it adds a "not equal to" filter on "start_date" and "end_date"
+And it adds a "not equal to" filter on "start_date" and "end_date", and a new "issue" filter for searching the "rootissue_id".
 
 This plugin is currently in alpha-stage and has been written as a first Ruby project. All comments, suggestions, corrections and help is very welcome.
 The plugin has been published on the https://www.redmine.org/plugins/redmine_view_issue_description page, but please be aware of the alpha-stage.
