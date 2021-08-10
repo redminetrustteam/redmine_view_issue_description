@@ -18,9 +18,10 @@ module ViewIssueDescriptionIssueQueryPatch
           "1=0"
         end
       when "~"
-        issue = Issue.where(:id => value.first.to_i).first
-        if issue && (issue_ids = issue.self_and_descendants.pluck(:id)).any?
-          "#{Issue.table_name}.id IN (#{issue_ids.join(',')})"
+        # accepts a comma separated list of ids
+        ids = value.first.to_s.scan(/\d+/).map(&:to_i)
+        if ids.present?
+          "#{Issue.table_name}.root_id IN (#{ids.join(",")})"
         else
           "1=0"
         end
