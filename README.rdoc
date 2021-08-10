@@ -18,6 +18,7 @@ The plugin has been published on the https://www.redmine.org/plugins/redmine_vie
 == TODO
 
 1. Bugfixing and code checkup by a pro.
+2. Remove "~" operator from "root_id" filter, it duplicates the "=" operator.
 
 == Installation
 
