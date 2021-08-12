@@ -53,7 +53,7 @@ Redmine::Plugin.register :redmine_view_issue_description do
   end
 
   Redmine::MenuManager.map :application_menu do |menu|
-    menu.push :activity, { :controller => 'activities', :action => 'index' }, after: :projects, :if => Proc.new { User.current.admin? || User.current.allowed_to?(:view_activities_global, nil, :global => true) }
+    menu.push :activity, { :controller => 'activities', :action => 'index', :id => nil }, after: :projects, :if => Proc.new { User.current.admin? || User.current.allowed_to?(:view_activities_global, nil, :global => true) }
   end
 
   Redmine::MenuManager.map :project_menu do |menu|
