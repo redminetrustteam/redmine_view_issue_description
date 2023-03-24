@@ -1,11 +1,11 @@
 #require 'redmine'
 
-require_dependency 'view_issue_description_issue_patch'
-require_dependency 'view_issue_description_query_patch'
-require_dependency 'view_issue_description_issue_query_patch'
-require_dependency 'activities_controller_override'
-require_dependency 'tracker_helper'
-require_dependency 'issues_api_hook'
+require File.dirname(__FILE__) + '/lib/view_issue_description_issue_patch'
+require File.dirname(__FILE__) + '/lib/view_issue_description_query_patch'
+require File.dirname(__FILE__) + '/lib/view_issue_description_issue_query_patch'
+require File.dirname(__FILE__) + '/lib/activities_controller_override'
+require File.dirname(__FILE__) + '/lib/tracker_helper'
+require File.dirname(__FILE__) + '/lib/issues_api_hook'
 
 Rails.configuration.to_prepare do
   unless Issue.included_modules.include?(ViewIssueDescriptionIssuePatch)
@@ -27,13 +27,13 @@ Redmine::Plugin.register :redmine_view_issue_description do
   name 'Redmine View Issue Description plugin'
   author 'Jan Catrysse'
   description 'Redmine plugin to add permissions to view issue description and the activity tab'
-  version '0.0.3'
+  version '0.0.4'
   url 'https://github.com/redminetrustteam/redmine_view_issue_description'
   author_url 'https://github.com/redminetrustteam'
 
   project_module :issue_description do
     Tracker.all.each do |t|
-      RedmineTrackControl::TrackerHelper.add_tracker_permission(t,"view_issue_description")
+      TrackerHelper.add_tracker_permission(t,"view_issue_description")
     end
   end
 
