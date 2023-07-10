@@ -1,41 +1,47 @@
-#require 'redmine'
+if Rails::VERSION::MAJOR >= 5
+  version = "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}".to_f
+  preparation_class = ActiveSupport::Reloader
+else
+  preparation_class = ActionDispatch::Callbacks
+end
 
-require File.dirname(__FILE__) + '/lib/view_issue_description_issue_patch'
-require File.dirname(__FILE__) + '/lib/view_issue_description_query_patch'
-require File.dirname(__FILE__) + '/lib/view_issue_description_issue_query_patch'
-require File.dirname(__FILE__) + '/lib/activities_controller_override'
-require File.dirname(__FILE__) + '/lib/tracker_helper'
-require File.dirname(__FILE__) + '/lib/issues_api_hook'
+require_dependency  'redmine_view_issue_description/patches/issue_patch'
+require_dependency  'redmine_view_issue_description/patches/issue_query_patch'
+require_dependency  'redmine_view_issue_description/patches/query_include_patch'
+require_dependency  'redmine_view_issue_description/patches/issues_controller_patch'
 
-Rails.configuration.to_prepare do
-  unless Issue.included_modules.include?(ViewIssueDescriptionIssuePatch)
-    Issue.send(:prepend, ViewIssueDescriptionIssuePatch::InstanceMethods)
+if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
+  Rails.autoloaders.main.ignore(File.dirname(__FILE__) + '/lib')
+  Rails.autoloaders.main.ignore(File.dirname(__FILE__) + '/lib/redmine_view_issue_description')
+  Rails.autoloaders.main.ignore(File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches')
+end
+
+preparation_class.to_prepare do
+  unless Issue.included_modules.include?(RedmineViewIssueDescription::Patches::IssuePatch::InstanceMethods)
+    Issue.prepend(RedmineViewIssueDescription::Patches::IssuePatch::InstanceMethods)
   end
-  unless IssueQuery.included_modules.include?(ViewIssueDescriptionIssueQueryPatch)
-    IssueQuery.send(:prepend, ViewIssueDescriptionIssueQueryPatch::InstanceMethods)
+  unless IssueQuery.included_modules.include?(RedmineViewIssueDescription::Patches::IssueQueryPatch::InstanceMethods)
+    IssueQuery.prepend(RedmineViewIssueDescription::Patches::IssueQueryPatch::InstanceMethods)
   end
-  unless Query.included_modules.include?(ViewIssueDescriptionQueryPatch)
-    Query.send(:prepend, ViewIssueDescriptionQueryPatch::InstanceMethods)
-    Query.send(:include, ViewIssueDescriptionQueryPatch::QueryInclude)
+  unless Query.included_modules.include?(RedmineViewIssueDescription::Patches::InstanceMethods)
+    Query.prepend(RedmineViewIssueDescription::Patches::InstanceMethods)
+    Query.include(RedmineViewIssueDescription::Patches::QueryInclude)
   end
-  unless ActivitiesController.included_modules.include?(ActivitiesControllerOverride)
-    ActivitiesController.send(:prepend, ActivitiesControllerOverride::InstanceMethods)
+  unless ActivitiesController.included_modules.include?(ActivitiesControllerOverride::InstanceMethods)
+    ActivitiesController.prepend(ActivitiesControllerOverride::InstanceMethods)
+  end
+  unless IssuesController.included_modules.include?(RedmineViewIssueDescription::Patches::IssuesControllerPatch::InstanceMethods)
+    IssuesController.prepend(RedmineViewIssueDescription::Patches::IssuesControllerPatch::InstanceMethods)
   end
 end
 
 Redmine::Plugin.register :redmine_view_issue_description do
   name 'Redmine View Issue Description plugin'
   author 'Jan Catrysse'
-  description 'Redmine plugin to add permissions to view issue description and the activity tab'
-  version '0.0.4'
+  description 'Redmine plugin to add permissions to view issue description and the activity tabs'
+  version '0.1.0'
   url 'https://github.com/redminetrustteam/redmine_view_issue_description'
   author_url 'https://github.com/redminetrustteam'
-
-  project_module :issue_description do
-    Tracker.all.each do |t|
-      TrackerHelper.add_tracker_permission(t,"view_issue_description")
-    end
-  end
 
   project_module :issue_tracking do
     permission :view_issue_description, {:custom_issue_description => [:index]}
@@ -59,5 +65,4 @@ Redmine::Plugin.register :redmine_view_issue_description do
   Redmine::MenuManager.map :project_menu do |menu|
     menu.push :activity, { :controller => 'activities', :action => 'index' }, after: :overview, :if => Proc.new {  |p| User.current.allowed_to?(:view_activities, p)  }
   end
-
 end

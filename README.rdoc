@@ -2,10 +2,9 @@
 
 This plugin adds a new permission for viewing details of "issues" (other than listing basic info).
 Users without this permission can see a list of the issues, but can not display the individual issue, except own issues.
-
 An additional set of permissions have been added to re-activate individual "trackers" for editing, so the details of the "issue" can be made visible.
 
-This plugin also adds two new permissions that hide and disable the "activities" menu, per project and global.
+This plugin also adds two new permissions that hide and disable the "activities" menu, per project and/or global.
 
 It activates an API call on "issues" for the RedmineUP helpdesk plugin, only when installed.
 It activates an API call on "issues" to show the "changesets" "repository" information.
@@ -17,15 +16,12 @@ The plugin has been published on the https://www.redmine.org/plugins/redmine_vie
 
 == TODO
 
-1. Bugfixing and code checkup by a pro.
-2. Remove "~" operator from "root_id" filter, it duplicates the "=" operator.
+1. Remove "~" operator from "root_id" filter, it duplicates the "=" operator.
 
 == Installation
 
 1. Move the files into $REDMINE/plugins/redmine_view_issue_description
-2. Only when using the RedmineUP helpdesk plugin: Hack and add this line before the last "end" and without quotes to "app/views/issues/show.api.rsb": "call_hook(:view_issues_show_api_helpdesk, {:root_api => api, :issue => @issue})"
-3. Only when using the Changesets API feature: Hack and add this line before the last "end" and without quotes to "app/views/issues/show.api.rsb": "call_hook(:view_issues_show_api_changesets, {:root_api => api, :issue => @issue})"
-4. Restart REDMINE
+2. Restart REDMINE
 
 == Usage
 
@@ -55,3 +51,4 @@ Usage of the "changesets" API hack
 == Compatible
 
 1. Tested on Redmine 4.1.2
+1. Tested on Redmine 5.0.5
