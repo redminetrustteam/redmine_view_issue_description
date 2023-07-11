@@ -12,8 +12,8 @@ Redmine::Plugin.register :redmine_view_issue_description do
     permission :view_issue_description, {}
   end
 
-  permission :view_activities_global, {:custom_activities_global => [:index]}
   permission :view_activities, {:custom_activities => [:index]}
+  permission :view_activities_global, {:custom_activities_global => [:index]}
 
   Redmine::MenuManager.map :application_menu do |menu|
     menu.delete :activity
