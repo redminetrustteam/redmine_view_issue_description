@@ -6,6 +6,8 @@ Redmine::Plugin.register :redmine_view_issue_description do
   url 'https://github.com/redminetrustteam/redmine_view_issue_description'
   author_url 'https://github.com/redminetrustteam'
 
+  requires_redmine version_or_higher: '4.0'
+
   project_module :issue_tracking do
     permission :view_issue_description, {}
   end
@@ -28,20 +30,11 @@ Redmine::Plugin.register :redmine_view_issue_description do
   Redmine::MenuManager.map :project_menu do |menu|
     menu.push :activity, { :controller => 'activities', :action => 'index' }, after: :overview, :if => Proc.new {  |p| User.current.allowed_to?(:view_activities, p)  }
   end
-end
 
-if Rails::VERSION::MAJOR >= 5
-  version = "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}".to_f
-  PLUGIN_MIGRATION_CLASS = ActiveRecord::Migration[version]
-  preparation_class = ActiveSupport::Reloader
-else
-  PLUGIN_MIGRATION_CLASS = ActiveRecord::Migration
-  preparation_class = ActionDispatch::Callbacks
-end
-
-preparation_class.to_prepare do
-  require_dependency  'redmine_view_issue_description/patches/issue_patch'
-  require_dependency  'redmine_view_issue_description/patches/issue_query_patch'
-  require_dependency  'redmine_view_issue_description/patches/query_patch'
-  require_dependency  'redmine_view_issue_description/patches/query_include'
+  require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/issue_patch'
+  require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/issue_query_patch'
+  require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/query_patch'
+  require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/query_include'
+  require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/issues_controller_patch'
+  require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/activities_controller_patch'
 end

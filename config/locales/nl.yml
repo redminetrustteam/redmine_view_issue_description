@@ -4,5 +4,4 @@ nl:
   permission_view_activities_global: "Globale activiteiten weergeven"
   permission_view_activities: "Activiteiten weergeven"
   project_module_issue_description: "Issue beschrijving"
-  label_rootissue: "Hoofdissue"
-
+  label_rootissue: "Rootissue"

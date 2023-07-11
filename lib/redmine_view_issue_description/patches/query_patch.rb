@@ -25,4 +25,5 @@ module RedmineViewIssueDescription
     end
   end
 end
+
 Query.prepend(RedmineViewIssueDescription::Patches::QueryPatch::InstanceMethods)
