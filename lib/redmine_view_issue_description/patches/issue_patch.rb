@@ -22,3 +22,5 @@ module RedmineViewIssueDescription
     end
   end
 end
+
+Issue.prepend(RedmineViewIssueDescription::Patches::IssuePatch::InstanceMethods)

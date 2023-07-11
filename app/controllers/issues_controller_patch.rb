@@ -1,12 +1,6 @@
 module RedmineViewIssueDescription
   module Patches
     module IssuesControllerPatch
-      def self.prepended(base)
-        base.class_eval do
-          prepend InstanceMethods
-        end
-      end
-
       module InstanceMethods
         def show
           super
@@ -26,3 +20,5 @@ module RedmineViewIssueDescription
     end
   end
 end
+
+IssuesController.prepend(RedmineViewIssueDescription::Patches::IssuesControllerPatch::InstanceMethods)

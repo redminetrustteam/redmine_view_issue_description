@@ -14,10 +14,6 @@ And it adds a "not equal to" filter on "start_date" and "end_date", and a new "i
 This plugin is currently in alpha-stage and has been written as a first Ruby project. All comments, suggestions, corrections and help is very welcome.
 The plugin has been published on the https://www.redmine.org/plugins/redmine_view_issue_description page, but please be aware of the alpha-stage.
 
-== TODO
-
-1. Remove "~" operator from "root_id" filter, it duplicates the "=" operator.
-
 == Installation
 
 1. Move the files into $REDMINE/plugins/redmine_view_issue_description
@@ -37,7 +33,7 @@ Re-activate the view_issue_description permission per tracker
 1. Click Top Menu [Administration]
 2. Click [Roles and permissions]
 3. Select a Role to re-activate the view of issue descriptions per tracker
-4. Click check box of view_issue_description_tracker that is in the [Issue description]
+4. Click check box of view_issue_description column on the bottom of the page [Issue tracking]
 5. Click a Project Menu [Settings]
 6. Click check box of issue_description module in [Modules]
 
