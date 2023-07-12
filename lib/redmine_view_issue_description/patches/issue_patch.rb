@@ -9,7 +9,7 @@ module RedmineViewIssueDescription
           user = usr || User.current
 
           return true if user.admin?
-          return true if self.author == user
+          #return true if self.author == user
           return true if user.is_or_belongs_to?(assigned_to)
 
           project_roles = user.roles_for_project(self.project)

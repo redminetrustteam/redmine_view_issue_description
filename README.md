@@ -4,7 +4,7 @@ This plugin adds the possibility to limit the **visibility** of **issue descript
 The main goal is to limit the visibility for external users (e.g., customers), without hiding an essential issue overview and issue related information.
 
 Long story short, without the new `view_issue_description` permission, a user cannot enter an issue or view its description.
-An exception is made for own issues (author or assigned user).
+An exception is made for `issues` where the user is the `assigned user`.
 
 Some extra features have been added, to improve the general usability.
 
