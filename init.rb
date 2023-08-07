@@ -33,7 +33,6 @@ Redmine::Plugin.register :redmine_view_issue_description do
 
   require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/issue_patch'
   require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/query_patch'
-  require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/query_include'
   require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/issues_controller_patch'
   require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/activities_controller_patch'
 end
