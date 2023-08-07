@@ -2,7 +2,7 @@ Redmine::Plugin.register :redmine_view_issue_description do
   name 'Redmine View Issue Description plugin'
   author 'Jan Catrysse'
   description 'Redmine plugin to add permissions to view issue description and the activity tabs'
-  version '0.1.1'
+  version '0.1.2'
   url 'https://github.com/redminetrustteam/redmine_view_issue_description'
   author_url 'https://github.com/redminetrustteam'
 
@@ -32,7 +32,6 @@ Redmine::Plugin.register :redmine_view_issue_description do
   end
 
   require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/issue_patch'
-  require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/issue_query_patch'
   require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/query_patch'
   require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/query_include'
   require File.dirname(__FILE__) + '/lib/redmine_view_issue_description/patches/issues_controller_patch'
