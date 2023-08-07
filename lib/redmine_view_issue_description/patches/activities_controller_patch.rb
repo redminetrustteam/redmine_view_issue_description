@@ -2,7 +2,7 @@ module RedmineViewIssueDescription
   module Patches
     module ActivitiesControllerPatch
       module InstanceMethods
-        def index
+        def index_with_vid
           unless User.current.admin?
             if User.current.allowed_to?(:view_activities, @project)
               authorize_activities(false)
@@ -10,7 +10,7 @@ module RedmineViewIssueDescription
               authorize_activities_global
             end
           end
-          super
+          index_without_vid
         end
 
         private
@@ -35,3 +35,7 @@ module RedmineViewIssueDescription
 end
 
 ActivitiesController.prepend(RedmineViewIssueDescription::Patches::ActivitiesControllerPatch::InstanceMethods)
+ActivitiesController.class_eval do
+  alias_method :index_without_vid, :index
+  alias_method :index, :index_with_vid
+end
