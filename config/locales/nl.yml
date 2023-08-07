@@ -1,6 +1,6 @@
 # Dutch strings go here for Rails i18n
 nl:
-  permission_view_issue_description: "Issue beschrijving weergeven"
-  permission_view_activities_global: "Globale activiteiten weergeven"
-  permission_view_activities: "Activiteiten weergeven"
-  project_module_issue_description: "Issue beschrijving"
+  permission_view_activities: Bekijk activiteiten
+  permission_view_activities_global: Bekijk globale activiteiten
+  permission_view_issue_description: Bekijk issue beschrijving
+  project_module_issue_description: Issue beschrijving

@@ -1,0 +1,5 @@
+es:
+  permission_view_activities: Ver actividades
+  permission_view_activities_global: Ver actividades globales
+  permission_view_issue_description: Vista de la descripción del ticket
+  project_module_issue_description: Descripción del ticket
